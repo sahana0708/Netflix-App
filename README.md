@@ -1,6 +1,6 @@
-# Netflix Clone
+# Netflix-App
 
-Full-stack Netflix-style app: **React** (frontend), **Node.js/Express** (backend), **PostgreSQL on Aiven** (database), **TMDB API** (movies).
+Full-stack Netflix clone built with React, Node.js, and Express. Features secure user authentication with bcrypt password hashing and PostgreSQL (Aiven) for data storage. Integrates TMDB API for dynamic movie carousels, hero banners, and genre-specific rows. Designed with Tailwind CSS for a premium, responsive streaming UI.
 
 ## Features
 
@@ -36,9 +36,9 @@ npm run dev           # http://localhost:5173 (proxies /api to backend)
 
 ### 3. Use the app
 
-- Open **http://localhost:5173**. You’ll be redirected to Login.
+- Open **http://localhost:5173**. You'll be redirected to Login.
 - Use **Sign up** to create an account (username, email, password).
-- After signup you’re sent to **Login**. Log in to reach the main **Landing** page (hero + carousel + genre rows).
+- After signup you're sent to **Login**. Log in to reach the main **Landing** page (hero + carousel + genre rows).
 
 ## Project layout
 
