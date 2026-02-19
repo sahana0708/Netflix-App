@@ -4,12 +4,6 @@
   "outputDirectory": "frontend/dist",
   "installCommand": "cd backend && npm install && cd ../frontend && npm install",
   "framework": null,
-  "functions": {
-    "api/index.js": {
-      "runtime": "nodejs18.x",
-      "memory": 1024
-    }
-  },
   "rewrites": [
     {
       "source": "/api/(.*)",

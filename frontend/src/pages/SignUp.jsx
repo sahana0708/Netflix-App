@@ -21,14 +21,18 @@ export default function SignUp() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, email, password }),
       });
-      const data = await res.json();
+      
       if (!res.ok) {
-        setError(data.error || 'Sign up failed');
+        const data = await res.json().catch(() => ({ error: `HTTP ${res.status}: ${res.statusText}` }));
+        setError(data.error || `Sign up failed (${res.status})`);
         return;
       }
+      
+      const data = await res.json();
       navigate('/login');
     } catch (err) {
-      setError('Network error. Try again.');
+      console.error('Signup error:', err);
+      setError(`Network error: ${err.message}. Check console for details.`);
     } finally {
       setLoading(false);
     }

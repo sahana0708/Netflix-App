@@ -1,6 +1,6 @@
-// Vercel serverless function wrapper for Express app
-// This file handles all /api/* routes
+// Vercel serverless function - handles all /api/* routes
 import app from '../backend/src/app.js';
 
-// Export the Express app - Vercel will handle routing
+// Vercel calls this function for /api/* requests
+// Express app receives the full path including /api prefix
 export default app;

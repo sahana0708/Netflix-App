@@ -7,26 +7,14 @@ import { query } from './db/pool.js';
 
 const app = express();
 
-// CORS - allow all origins in production (Vercel handles this), or specific origin in dev
-const allowedOrigins = process.env.FRONTEND_URL 
-  ? process.env.FRONTEND_URL.split(',').map(o => o.trim())
-  : ['http://localhost:5173'];
-
+// CORS - allow all origins (Vercel handles security)
 app.use(cors({ 
-  origin: (origin, callback) => {
-    // Allow requests with no origin (mobile apps, Postman, etc.)
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.includes(origin) || allowedOrigins.includes('*')) {
-      callback(null, true);
-    } else {
-      callback(null, true); // Allow all in production
-    }
-  },
+  origin: true, // Allow all origins
   credentials: true 
 }));
 app.use(express.json());
 
-// Routes - Vercel passes full path, so keep /api prefix
+// Routes - Vercel passes full path including /api prefix
 app.use('/api/auth', authRoutes);
 app.use('/api/movies', moviesRoutes);
 
@@ -37,6 +25,11 @@ app.get('/api/health', async (req, res) => {
   } catch (e) {
     res.status(500).json({ ok: false, db: 'error' });
   }
+});
+
+// Catch-all for unmatched routes
+app.use((req, res) => {
+  res.status(404).json({ error: 'Route not found', path: req.path });
 });
 
 export default app;
